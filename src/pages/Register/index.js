@@ -1,43 +1,85 @@
-import React, {Component} from 'react';
+import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 
-import {Link} from 'react-router-dom';
-import {FiArrowLeft} from 'react-icons/fi';
-
+import { FiArrowLeft } from 'react-icons/fi';
+import logoImg from '../../assets/logo.svg';
 import './styles.css';
-import logoImg from  '../../assets/logo.svg';
 
-export default class Register extends Component{
-    render(){
-        return(
-            <div className="register-container">
-                <div className="content">
-                    <section>
-                        <img src={logoImg} alt="Be the Hero" />
+import api from '../services/api';
 
-                        <h1>Cadastro</h1>
-                        <p>Faça seu cadasto, entre na plataforma e ajude pessoas a encontrarem os casos de sua ONG.</p>
+export default function Register() {
 
-                        <Link className="back-link" to="/">
-                            <FiArrowLeft size={16} color="#E02041"/>
+    const history = useHistory();
+
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [whatsapp, setWhatsapp] = useState('');
+    const [city, setCity] = useState('');
+    const [uf, setUf] = useState('');
+
+    async function handleRegister(e) {
+        e.preventDefault();
+
+        const data = {
+            name,
+            email,
+            whatsapp,
+            city,
+            uf,
+        };    
+
+        try {
+            const response = await api.post('ongs', data);
+            alert(`Seu ID é ${response.data.id}`);
+            history.push('/');
+        } catch (error) {
+            alert("Erro no cadastro, tente novamente")
+        }  
+
+    }
+
+
+    return (
+        <div className="register-container">
+            <div className="content">
+                <section>
+                    <img src={logoImg} alt="Be the Hero" />
+
+                    <h1>Cadastro</h1>
+                    <p>Faça seu cadasto, entre na plataforma e ajude pessoas a encontrarem os casos de sua ONG.</p>
+
+                    <Link className="back-link" to="/">
+                        <FiArrowLeft size={16} color="#E02041" />
                             Voltar para o Logon
                         </Link>
 
-                    </section>
+                </section>
+                <form onSubmit={handleRegister}>
+                    <input value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="Nome da ONG" />
+                    <input value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        type="email" placeholder="E-mail" />
 
-                    <form>
-                        <input placeholder="Nome da ONG"/>
-                        <input type="email" placeholder="E-mail"/>
-                        <input placeholder="Whatsapp"/>
+                    <input value={whatsapp}
+                        onChange={(e) => setWhatsapp(e.target.value)}
+                        placeholder="Whatsapp" />
 
-                        <div className="input-group">
-                            <input placeholder="Cidade" />
-                            <input placeholder="Uf" style={{width: 80}} />
-                        </div>
+                    <div className="input-group">
+                        <input value={city}
+                            onChange={(e) => setCity(e.target.value)}
+                            placeholder="Cidade" />
+                        <input value={uf}
+                            onChange={(e) => setUf(e.target.value)}
+                            placeholder="Uf"
+                            style={{ width: 80 }} />
+                    </div>
 
-                        <button className="button" type="submit">Cadastrar</button>
-                    </form>
-                </div>
+                    <button className="button" type="submit">Cadastrar</button>
+                </form>
             </div>
-        )
-    }
+        </div>
+    )
+
 } 
