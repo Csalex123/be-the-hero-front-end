@@ -5,7 +5,7 @@ import { FiArrowLeft } from 'react-icons/fi';
 import logoImg from '../../assets/logo.svg';
 import './styles.css';
 
-import api from '../services/api';
+import api from '../../services/api';
 
 export default function Register() {
 
