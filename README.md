@@ -16,14 +16,14 @@ Website desenvolvido para ongs conseguirem ajuda para seus animais.
 </p>
 
 <p align="center">
-      <img alt="Home" src="https://ibb.co/Hg28Hng" width="100%">
+      <img alt="Home" src="https://i.ibb.co/JkdJs5k/2.png" width="100%">
 </p>
 
 <p align="center">
-     <img alt="Home" src="https://ibb.co/kxgPhQs" width="100%">
+     <img alt="Home" src="https://i.ibb.co/W6WRcg4/3.png" width="100%">
 </p>
 
 <p align="center">
-     <img alt="Home" src="https://ibb.co/74G6wzk" width="100%">
+     <img alt="Home" src="https://i.ibb.co/rsZ1Ctd/4.png" width="100%">
 </p>
 
